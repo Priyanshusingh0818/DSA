@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary Search Visualization</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Dictionary Word Search Visualization</h1>
+        <p>Compare Binary Search (Divide & Conquer) vs Greedy Search methods for finding words in a dictionary.</p>
+        
+        <div class="search-container">
+            <div class="input-group">
+                <input type="text" id="searchInput" placeholder="Enter a word to search...">
+                <button id="searchButton" class="search-btn">
+                    <span class="btn-content">
+                        <span class="loading hidden"></span>
+                        Search
+                    </span>
+                </button>
+            </div>
+            
+            <div>
+                <h4>Suggested Words:</h4>
+                <div id="wordSuggestions"></div>
+            </div>
+            
+            <div class="speed-control">
+                <label for="speedControl">Animation Speed:</label>
+                <select id="speedControl">
+                    <option value="2000">Slow</option>
+                    <option value="1000" selected>Medium</option>
+                    <option value="500">Fast</option>
+                    <option value="100">Very Fast</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="visualization">
+            <div class="algorithm">
+                <h3>Binary Search (Divide & Conquer)</h3>
+                <div class="dictionary" id="binarySearchDict"></div>
+                <div class="stats" id="binaryStats">
+                    <p>Steps: <span id="binarySteps">0</span></p>
+                    <p>Comparisons: <span id="binaryComparisons">0</span></p>
+                    <p>Time: <span id="binaryTime">0</span> ms</p>
+                </div>
+            </div>
+            
+            <div class="algorithm">
+                <h3>Greedy Search</h3>
+                <div class="dictionary" id="greedySearchDict"></div>
+                <div class="stats" id="greedyStats">
+                    <p>Steps: <span id="greedySteps">0</span></p>
+                    <p>Comparisons: <span id="greedyComparisons">0</span></p>
+                    <p>Time: <span id="greedyTime">0</span> ms</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="result-comparison">
+            <h3>Performance Comparison</h3>
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Binary Search</th>
+                        <th>Greedy Search</th>
+                        <th>Winner</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Steps</td>
+                        <td id="binaryStepsResult">-</td>
+                        <td id="greedyStepsResult">-</td>
+                        <td id="stepsWinner">-</td>
+                    </tr>
+                    <tr>
+                        <td>Comparisons</td>
+                        <td id="binaryComparisonsResult">-</td>
+                        <td id="greedyComparisonsResult">-</td>
+                        <td id="comparisonsWinner">-</td>
+                    </tr>
+                    <tr>
+                        <td>Time (ms)</td>
+                        <td id="binaryTimeResult">-</td>
+                        <td id="greedyTimeResult">-</td>
+                        <td id="timeWinner">-</td>
+                    </tr>
+                    <tr>
+                        <td>Overall</td>
+                        <td colspan="2">-</td>
+                        <td id="overallWinner">-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="explanation">
+            <h3>Algorithm Explanation</h3>
+            <h4>Binary Search (Divide & Conquer)</h4>
+            <p>Binary search works by repeatedly dividing the search space in half. It compares the target word with the middle element of the dictionary:</p>
+            <ul>
+                <li>If the target word matches the middle element, the search is complete.</li>
+                <li>If the target word is alphabetically before the middle element, the search continues in the lower half.</li>
+                <li>If the target word is alphabetically after the middle element, the search continues in the upper half.</li>
+            </ul>
+            <p>Time Complexity: O(log n) where n is the number of words in the dictionary.</p>
+            
+            <h4>Greedy Search</h4>
+            <p>In this implementation, the greedy approach starts at the beginning of the dictionary and makes locally optimal choices at each step:</p>
+            <ul>
+                <li>It compares the current word with the target word.</li>
+                <li>Based on the comparison, it decides how many positions to move forward (using the first letter comparison as a heuristic).</li>
+                <li>It continues this process until it finds the word or determines it's not in the dictionary.</li>
+            </ul>
+            <p>Time Complexity: Can vary, but typically O(n) in the worst case, where n is the number of words in the dictionary.</p>
+        </div>
+    </div>
+
+    <script src="script.js"> </script>
+</body>
+</html>
